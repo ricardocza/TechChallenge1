@@ -1,0 +1,51 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div>
+    <RadzenStack>
+        <RadzenText Text="TechChallenge" TextStyle="TextStyle.H2" TextAlign=TextAlign.Center/>
+        <RadzenText Text="Fase 1" TextStyle="TextStyle.Body1" TextAlign=TextAlign.Center />
+        <RadzenDataGrid @ref=grid Data="Contacts" AllowFiltering=true AllowSorting=true PageSize="2">  
+            <Columns>
+                <RadzenDataGridColumn TItem="ContactDto" Property="Name" Title="Name" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="Email" Title="Email" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="Phone" Title="Phone" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="State" Title="State" />
+            </Columns>
+        </RadzenDataGrid>
+    </RadzenStack>
+</div>
+
+@code {
+    private class ContactDto
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public RegionEnum State
+        {
+            get
+            {
+                var dddNumber = Phone.Take(2).ToString();
+                // return Enum.Parse(typeof(RegionEnum), dddNumber);
+                return RegionEnum.Parana;
+            }
+        }
+    }
+
+    private IEnumerable<ContactDto> Contacts { get; set; }
+    private RadzenDataGrid<ContactDto> grid;
+
+    protected override void OnInitialized()
+    {
+        Contacts = new List<ContactDto>()
+        {
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321" },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999" },
+            
+        };
+    }
+}

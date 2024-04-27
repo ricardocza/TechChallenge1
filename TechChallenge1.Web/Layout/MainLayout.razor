@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+<div class="page">
+    <main>
+        <RadzenHeader>
+            <RadzenStack Orientation="Orientation.Horizontal" 
+                         JustifyContent="JustifyContent.SpaceBetween"
+                          AlignItems="AlignItems.Center">
+                <RadzenButton Text="Mostrar Grupo" />
+
+            </RadzenStack>
+        </RadzenHeader>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<RadzenComponents />
