@@ -12,4 +12,8 @@
     <PackageReference Include="Radzen.Blazor" Version="4.30.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TechChallenge1.Core\TechChallenge1.Core.csproj" />
+  </ItemGroup>
+
 </Project>

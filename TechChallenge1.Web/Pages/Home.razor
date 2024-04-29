@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using TechChallenge1.Core.DTO
 
 <PageTitle>Home</PageTitle>
 
@@ -17,23 +18,7 @@
     </RadzenStack>
 </div>
 
-@code {
-    private class ContactDto
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public RegionEnum State
-        {
-            get
-            {
-                var dddNumber = Phone.Take(2).ToString();
-                // return Enum.Parse(typeof(RegionEnum), dddNumber);
-                return RegionEnum.Parana;
-            }
-        }
-    }
-
+@code {   
     private IEnumerable<ContactDto> Contacts { get; set; }
     private RadzenDataGrid<ContactDto> grid;
 
@@ -41,11 +26,10 @@
     {
         Contacts = new List<ContactDto>()
         {
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321" },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999" },
-            
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },            
         };
     }
 }
