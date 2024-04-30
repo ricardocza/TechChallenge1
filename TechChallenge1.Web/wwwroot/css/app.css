@@ -1,7 +1,15 @@
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+html, body, * {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    overflow: hidden;
 }
 
+
+:root {
+    --fiap-primary: #ed145b;
+    --fiap-primary-dark: #ba0f47;
+    --fiap-primary-darker: #8a0e37;
+    --fiap-grey-400: #919191;
+}
 h1:focus {
     outline: none;
 }
@@ -104,5 +112,97 @@ code {
 
 .rz-text-h1, .rz-text-h2, .rz-text-h3, .rz-text-h4, .rz-text-h5, .rz-text-h6,
 .rz-text-body1, .rz-text-body2, .rz-text-caption {
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
 }
+
+.rz-button.rz-variant-outlined.rz-primary.rz-shade-default {
+    color: var(--fiap-primary);
+    border-color: var(--fiap-primary);
+    box-shadow: inset 0 0 0 var(--rz-border-width) var(--fiap-primary);
+    transition: 0.2s;
+}
+
+.rz-button.rz-variant-outlined.rz-primary:not(.rz-state-disabled):hover:not(:active),
+.rz-button.rz-variant-outlined.rz-primary:not(.rz-state-disabled):focus-visible:not(:active),
+.rz-button.rz-variant-outlined.rz-primary:not(.rz-state-disabled):active {
+    background-color: unset;
+    box-shadow: inset 0 0 0 var(--rz-border-width) var(--fiap-primary-dark);
+    color: var(--fiap-primary-dark);
+    transition: 0.2s;
+}
+
+.rz-datatable {
+    border: 1px solid var(--fiap-primary);
+    border-radius: 10px
+}
+
+.rz-datatable-thead th, .rz-grid-table thead th,
+.rz-datatable-data td, .rz-grid-table td {
+    border-bottom: 1px solid #3f3f3f;
+}
+
+.rz-datatable-thead th,
+.rz-grid-table thead th,
+.rz-datatable,
+.rz-grid-table-striped tbody > tr:not(.rz-expanded-row-content):nth-child(odd) > td {
+    background-color: transparent;
+}
+
+.rz-grid-table-striped tbody > tr:not(.rz-expanded-row-content):nth-child(even) > td {
+    background-color: #1f1f1f;
+}
+
+.rz-datatable-thead th .rz-column-title,
+.rz-grid-table thead th .rz-column-title,
+.rz-sortable-column .rzi-sort,
+.rz-grid-filter-icon {
+    color: var(--fiap-primary);
+}
+
+.rz-sortable-column > div:hover .rzi-sort:not(.rzi-sort-asc):not(.rzi-sort-desc),
+.rz-grid-filter-icon:hover {
+    color: var(--fiap-primary-darker);
+}
+
+.rz-datatable-data td .rz-cell-data, .rz-grid-table td .rz-cell-data {
+    color: white;
+}
+
+/*#region Dialog */
+.rz-dialog-side-position-right {
+    top: 0;
+    background-color: #222427;
+    overflow: hidden;
+    animation: dialog-in 0.3s ease-out;    
+}
+.rz-dialog-side-titlebar-close:hover .rzi-times {
+    color: var(--fiap-primary);
+}
+.rz-dialog-side-titlebar {
+    background-color: #222427;
+}
+.rz-dialog-mask {
+    animation: dialog-mask-in 0.3s ease-out;
+}
+@keyframes dialog-in {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+
+@keyframes dialog-mask-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+/*#endregion */

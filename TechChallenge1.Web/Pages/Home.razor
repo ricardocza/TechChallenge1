@@ -1,12 +1,12 @@
 ﻿@page "/"
 @using TechChallenge1.Core.DTO
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Tech Challenge</PageTitle>
 
-<div>
+<main>
     <RadzenStack>
-        <RadzenText Text="TechChallenge" TextStyle="TextStyle.H2" TextAlign=TextAlign.Center/>
-        <RadzenText Text="Fase 1" TextStyle="TextStyle.Body1" TextAlign=TextAlign.Center />
+        <RadzenText Text="TechChallenge" TextStyle="TextStyle.H2" />
+        <RadzenText Text="Fase 1 - Arquitetura de sistemas .Net com Azure" TextStyle="TextStyle.Body1"  />
         <RadzenDataGrid @ref=grid Data="Contacts" AllowFiltering=true AllowSorting=true PageSize="2">  
             <Columns>
                 <RadzenDataGridColumn TItem="ContactDto" Property="Name" Title="Name" />
@@ -16,7 +16,7 @@
             </Columns>
         </RadzenDataGrid>
     </RadzenStack>
-</div>
+</main>
 
 @code {   
     private IEnumerable<ContactDto> Contacts { get; set; }
