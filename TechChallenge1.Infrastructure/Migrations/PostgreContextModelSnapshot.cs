@@ -48,7 +48,7 @@ namespace TechChallenge1.Infrastructure.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Contact", (string)null);
+                    b.ToTable("Contact", "TechChallenge1");
                 });
 
             modelBuilder.Entity("TechChallenge1.Core.Models.State", b =>
@@ -65,7 +65,7 @@ namespace TechChallenge1.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("State", (string)null);
+                    b.ToTable("State", "TechChallenge1");
 
                     b.HasData(
                         new

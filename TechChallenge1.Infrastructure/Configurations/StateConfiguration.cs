@@ -8,7 +8,7 @@ namespace TechChallenge1.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<State> builder)
         {
-            builder.ToTable("State");
+            builder.ToTable("State", "TechChallenge1");
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Id).HasColumnType("INT").ValueGeneratedOnAdd().UseIdentityColumn();
             builder.Property(u => u.Name).HasColumnType("VARCHAR(100)").IsRequired();

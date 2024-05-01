@@ -11,7 +11,7 @@ using TechChallenge1.Infrastructure.Repository;
 namespace TechChallenge1.Infrastructure.Migrations
 {
     [DbContext(typeof(PostgreContext))]
-    [Migration("20240501181402_Initial")]
+    [Migration("20240501184445_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -51,7 +51,7 @@ namespace TechChallenge1.Infrastructure.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Contact", (string)null);
+                    b.ToTable("Contact", "TechChallenge1");
                 });
 
             modelBuilder.Entity("TechChallenge1.Core.Models.State", b =>
@@ -68,7 +68,7 @@ namespace TechChallenge1.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("State", (string)null);
+                    b.ToTable("State", "TechChallenge1");
 
                     b.HasData(
                         new

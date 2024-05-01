@@ -13,8 +13,12 @@ namespace TechChallenge1.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "TechChallenge1");
+
             migrationBuilder.CreateTable(
                 name: "State",
+                schema: "TechChallenge1",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INT", nullable: false)
@@ -28,6 +32,7 @@ namespace TechChallenge1.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Contact",
+                schema: "TechChallenge1",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INT", nullable: false)
@@ -43,12 +48,14 @@ namespace TechChallenge1.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Contact_State_StateId",
                         column: x => x.StateId,
+                        principalSchema: "TechChallenge1",
                         principalTable: "State",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
+                schema: "TechChallenge1",
                 table: "State",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -84,6 +91,7 @@ namespace TechChallenge1.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contact_StateId",
+                schema: "TechChallenge1",
                 table: "Contact",
                 column: "StateId");
         }
@@ -92,10 +100,12 @@ namespace TechChallenge1.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Contact");
+                name: "Contact",
+                schema: "TechChallenge1");
 
             migrationBuilder.DropTable(
-                name: "State");
+                name: "State",
+                schema: "TechChallenge1");
         }
     }
 }
