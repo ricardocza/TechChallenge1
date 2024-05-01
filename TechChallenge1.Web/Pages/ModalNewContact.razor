@@ -1,0 +1,58 @@
+﻿@using TechChallenge1.Core.DTO
+@using TechChallenge1.Web.Utils
+@using TechChallenge1.Web.WebServices.Interfaces
+
+@inject DialogService DialogService
+@inject IContactWebService ContactWebService
+@inject NotificationService notificationService
+
+<div>
+    <EditForm OnValidSubmit="Submit" EditContext="_editContext">
+        <DataAnnotationsValidator />
+        <RadzenStack Gap="16">
+            <RadzenTextBox @bind-Value="@Contact.Name" Placeholder="Nome" />
+            <RadzenTextBox @bind-Value="@Contact.Email" Placeholder="Email" />
+            <RadzenTextBox @bind-Value="@Contact.Phone" Placeholder="Telefone" />
+            <RadzenTextBox @bind-Value="@Contact.State" Placeholder="Estado" />
+
+            <RadzenRow JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Center" Gap="16">
+                <RadzenButton ButtonType="ButtonType.Submit" Text="Salvar" Disabled="IsLoading" />
+                <RadzenButton Text="Cancelar" Variant=Variant.Outlined Click="@(() => DialogService.Close())" />
+            </RadzenRow>
+        </RadzenStack>
+    </EditForm>
+</div>
+
+@code {
+    private ContactDto Contact { get; set; } = new ContactDto();
+    private bool IsLoading { get; set; }
+    private EditContext _editContext;
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(Contact);
+    }
+
+
+    private async Task Submit()
+    {
+        IsLoading = true;
+        StateHasChanged();
+
+        var result = await ContactWebService.AddContact(Contact);
+
+        if(result != null)
+        {
+            MessageScreen.ShowMessage(notificationService, "Contato", "Contato salvo com sucesso!", NotificationSeverity.Success);
+            DialogService.Close(true);
+        }
+        
+        else
+        {
+            MessageScreen.ShowMessage(notificationService, "Contato", "Erro ao salvar contato!", NotificationSeverity.Error);
+        }
+
+        IsLoading = false;
+        StateHasChanged();
+    }
+}

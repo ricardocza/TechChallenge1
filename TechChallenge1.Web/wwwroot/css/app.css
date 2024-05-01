@@ -168,6 +168,12 @@ code {
 .rz-datatable-data td .rz-cell-data, .rz-grid-table td .rz-cell-data {
     color: white;
 }
+.rz-paginator {
+    height: 100px;
+}
+.rz-datatable-loading-content .rzi-circle-o-notch {
+    color: white;
+}
 
 /*#region Dialog */
 .rz-dialog-side-position-right {

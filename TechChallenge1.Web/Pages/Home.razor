@@ -1,35 +1,87 @@
 ﻿@page "/"
+
 @using TechChallenge1.Core.DTO
+@using TechChallenge1.Web.Utils
+@using TechChallenge1.Web.WebServices.Interfaces
+
+@inject IContactWebService ContactWebService
+@inject DialogService DialogService
+@inject NotificationService notificationService
 
 <PageTitle>Tech Challenge</PageTitle>
 
 <main>
     <RadzenStack>
-        <RadzenText Text="TechChallenge" TextStyle="TextStyle.H2" />
-        <RadzenText Text="Fase 1 - Arquitetura de sistemas .Net com Azure" TextStyle="TextStyle.Body1"  />
-        <RadzenDataGrid @ref=grid Data="Contacts" AllowFiltering=true AllowSorting=true PageSize="2">  
+        <RadzenRow JustifyContent="JustifyContent.SpaceBetween" AlignItems="AlignItems.Center">
+            <RadzenColumn>
+                <RadzenText Text="TechChallenge" TextStyle="TextStyle.H2" />
+                <RadzenText Text="Fase 1 - Arquitetura de sistemas .Net com Azure" TextStyle="TextStyle.Body1"  />
+            </RadzenColumn>
+            
+            <RadzenButton Text="Adicionar Contato" Icon="add" ButtonStyle="ButtonStyle.Primary" Click="AddNewContact" />
+        </RadzenRow>
+
+        <RadzenDataGrid @ref=grid Data="Contacts" AllowFiltering=true AllowSorting=true
+                        LoadData="LoadData" IsLoading=IsLoading PageSize="4" AllowPaging=true 
+                        PagerAlwaysVisible=true Count="Count">
             <Columns>
-                <RadzenDataGridColumn TItem="ContactDto" Property="Name" Title="Name" />
-                <RadzenDataGridColumn TItem="ContactDto" Property="Email" Title="Email" />
-                <RadzenDataGridColumn TItem="ContactDto" Property="Phone" Title="Phone" />
-                <RadzenDataGridColumn TItem="ContactDto" Property="State" Title="State" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="Name" Title="Nome" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="Email" Title="E-mail" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="Phone" Title="Número de Celular" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="State" Title="Estado" />
+                <RadzenDataGridColumn TItem="ContactDto" Title="Ações" Sortable=false Filterable=false Width="120px" TextAlign="TextAlign.Center">
+                    <Template Context="data">
+                        <RadzenButton Icon="edit" />
+                        <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger" />
+                    </Template>
+                </RadzenDataGridColumn>
             </Columns>
         </RadzenDataGrid>
     </RadzenStack>
 </main>
 
-@code {   
+@code {
     private IEnumerable<ContactDto> Contacts { get; set; }
     private RadzenDataGrid<ContactDto> grid;
+    private bool IsLoading { get; set; }
+    private int Count;
 
-    protected override void OnInitialized()
+    private async Task LoadData(LoadDataArgs args)
     {
+        IsLoading = true;
+        StateHasChanged();
+
+        await Task.Delay(1000);
         Contacts = new List<ContactDto>()
         {
             new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
             new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
             new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },            
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },
+
         };
+        Count = Contacts.Count();
+
+        // Remover dados mocados e manter as próximas linhas
+        // var result = await ContactWebService.GetRadzenList(args);
+        // Count = result.TotalRegisterFilter;
+        // Contacts = result.List;
+
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    private async Task AddNewContact()
+    {
+        await DialogService.OpenAsync<ModalNewContact>("Adicionar Contato", null);
+        
     }
 }
