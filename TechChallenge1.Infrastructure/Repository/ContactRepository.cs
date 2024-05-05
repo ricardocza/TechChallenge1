@@ -1,26 +1,28 @@
-﻿using TechChallenge1.Core.DTO;
-using TechChallenge1.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TechChallenge1.Data.Context;
+using TechChallenge1.Domain.Models;
 using TechChallenge1.Infrastructure.Interfaces;
+using TechChallenge1.Infrastructure.Repository;
 
-namespace TechChallenge1.Infrastructure.Repository
+namespace TechChallenge1.Data.Repository
 {
-    public class ContactRepository : EFRepository<Contact>, IContactRepository
+    public class ContactRepository : Repository<Contact>, IContactRepository
     {
-        public ContactRepository(PostgreContext context) : base(context)
+        public ContactRepository(techchallengeDbContext dbContext) : base(dbContext)
         {
 
         }
+        public IEnumerable<Contact> GetByDDD(int id)
+        {
 
-        public List<ContactDto> GetByDDD(int id)
-        {            
-            var contacts = _context.Contacts.Where<Contact>(c => c.StateId == id) ?? throw new Exception("Registro não encontrado!");
-
-            if(contacts?.Count() > 0)
-            {
-                return ContactDto.FromRange(contacts);
-            }
-
-            return new List<ContactDto>();
+            //TODO
+            //
+            return new List<Contact>();
         }
     }
 }

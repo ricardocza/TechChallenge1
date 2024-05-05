@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechChallenge1.Core.Models;
+using TechChallenge1.Domain.Models;
 
 namespace TechChallenge1.Infrastructure.Configurations
 {
@@ -10,7 +11,7 @@ namespace TechChallenge1.Infrastructure.Configurations
         {
             builder.ToTable("Contact", "TechChallenge1");
             builder.HasKey(u => u.Id);
-            builder.Property(u => u.Id).HasColumnType("INT").ValueGeneratedOnAdd().UseIdentityColumn();
+            builder.Property(u => u.Id);
             builder.Property(u => u.Name).HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(u => u.StateId).HasColumnType("INT").IsRequired();
             builder.Property(u => u.Email).HasColumnType("VARCHAR(100)");

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechChallenge1.Core.Models;
+using TechChallenge1.Domain.Models;
 
 namespace TechChallenge1.Infrastructure.Configurations
 {

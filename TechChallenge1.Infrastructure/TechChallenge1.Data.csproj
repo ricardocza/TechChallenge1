@@ -21,6 +21,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechChallenge1.Core\TechChallenge1.Core.csproj" />
+    <ProjectReference Include="..\TechChallenge1.Domain\TechChallenge1.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
