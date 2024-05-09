@@ -2,8 +2,7 @@
 using TechChallenge1.Data.Repository;
 using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Services;
-using TechChallenge1.Infrastructure.Interfaces;
-using TechChallenge1.Infrastructure.Repository;
+
 
 namespace TechChallenge1.API.Configurations
 {

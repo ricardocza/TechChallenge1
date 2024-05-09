@@ -6,7 +6,7 @@ using TechChallenge1.Data.Context;
 using TechChallenge1.Domain.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
+ 
 // Add services to the container.
 
 var connectionString = builder.Configuration.GetConnectionString("SqlConnection");

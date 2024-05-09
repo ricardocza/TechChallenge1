@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechChallenge1.Data.Context;
+using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Models;
-using TechChallenge1.Infrastructure.Interfaces;
 using TechChallenge1.Infrastructure.Repository;
 
 namespace TechChallenge1.Data.Repository

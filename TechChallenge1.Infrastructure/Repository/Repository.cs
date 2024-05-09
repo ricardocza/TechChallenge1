@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using TechChallenge1.Core.Models;
 using TechChallenge1.Data.Context;
-using TechChallenge1.Infrastructure.Interfaces;
+using TechChallenge1.Domain.Interfaces;
 
 namespace TechChallenge1.Infrastructure.Repository
 {

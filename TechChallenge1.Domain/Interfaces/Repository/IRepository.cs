@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using TechChallenge1.Core.Models;
 
-namespace TechChallenge1.Infrastructure.Interfaces
+namespace TechChallenge1.Domain.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {

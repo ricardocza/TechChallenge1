@@ -10,8 +10,10 @@ namespace TechChallenge1.Domain.Interfaces
     public interface IContactService
     {
         Task Create (Contact contact);
-        Task Delete (Contact contact);
-        Task Update (Contact contact);
+        Task Delete (Guid id);
+        Task Update (Guid id,Contact contact);
+
+        Task<Contact> GetById (Guid id);
         Task<IEnumerable<Contact>> GetAll ();
         Task<IEnumerable<Contact>> GetByState (int id);
     }
