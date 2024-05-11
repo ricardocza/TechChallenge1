@@ -50,7 +50,7 @@
                     </Template>
 
                     <EditTemplate Context="data">
-                        <RadzenMask Mask="(**) *****-****" CharacterPattern="[0-9]" @bind-Value="@data.Phone" />
+                        <RadzenMask Mask="(**) *****-****" CharacterPattern="[0-9]" Placeholder="(00) 00000-0000" @bind-Value="@data.Phone" />
                     </EditTemplate>
                 </RadzenDataGridColumn>
 
@@ -86,18 +86,18 @@
         await Task.Delay(1000);
         Contacts = new List<ContactDto>()
         {
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = new() {Name= "Parana" } },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", State = new() {Name= "São Paulo" }},
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "1191234567", State = new() {Name= "Rio de Janeiro" }},
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = new() {Name= "Minas Gerais" }},
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "3198765431", State = new() {Name= "Parana" }},
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", State = new() {Name= "São Paulo" }},
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = new() {Name= "Rio de Janeiro" }},
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = new() {Name= "Minas Gerais" }},
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = new() {Name= "Parana" }},
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = new() {Name= "São Paulo" }},
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = new() {Name= "Rio de Janeiro" }},
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = new() {Name= "Minas Gerais" }},
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", StateName = "Parana" } ,
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", StateName = "São Paulo" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "1191234567", StateName = "Rio de Janeiro" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", StateName = "Minas Gerais" },
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "3198765431", StateName = "Parana" },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", StateName = "São Paulo" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", StateName = "Rio de Janeiro" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", StateName = "Minas Gerais" },
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", StateName = "Parana" },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", StateName = "São Paulo" },
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", StateName = "Rio de Janeiro" },
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", StateName = "Minas Gerais" },
 
         };
         Count = Contacts.Count();
