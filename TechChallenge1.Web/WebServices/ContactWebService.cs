@@ -28,7 +28,7 @@ namespace TechChallenge1.Web.WebServices
             return null;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(Guid id)
         {
             var response = await _httpClient.DeleteAsync($"api/contacts/{id}");
 
@@ -59,7 +59,7 @@ namespace TechChallenge1.Web.WebServices
             throw new Exception($"Error: {response.StatusCode} - {message.Result}");
         }
 
-        public async Task<ContactDto?> GetById(int id)
+        public async Task<ContactDto?> GetById(Guid id)
         {
             var response = await _httpClient.GetAsync($"api/contacts/{id}");
 

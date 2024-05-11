@@ -9,7 +9,8 @@ namespace TechChallenge1.Core.DTO
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public int State { get; set; }
+        public int StateId { get; set; }
+        public StateDto? State { get; set; }
 
     }
 }

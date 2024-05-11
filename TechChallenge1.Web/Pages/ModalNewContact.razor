@@ -12,8 +12,8 @@
         <RadzenStack Gap="16">
             <RadzenTextBox @bind-Value="@Contact.Name" Placeholder="Nome" />
             <RadzenTextBox @bind-Value="@Contact.Email" Placeholder="Email" />
-            <RadzenTextBox @bind-Value="@Contact.Phone" Placeholder="Telefone" />
-            <RadzenTextBox @bind-Value="@Contact.State" Placeholder="Estado" />
+            <RadzenMask Mask="(**) *****-****" CharacterPattern="[0-9]" @bind-Value="@Contact.Phone" Change="OnPhoneChange" />
+            <RadzenTextBox @bind-Value="@Contact.State.Name" Placeholder="Estado" Disabled=true />
 
             <RadzenRow JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Center" Gap="16">
                 <RadzenButton ButtonType="ButtonType.Submit" Text="Salvar" Disabled="IsLoading" />
@@ -24,8 +24,9 @@
 </div>
 
 @code {
-    private ContactDto Contact { get; set; } = new ContactDto();
+    private ContactDto Contact { get; set; } = new ContactDto() { State = new()};
     private bool IsLoading { get; set; }
+
     private EditContext _editContext;
 
     protected override void OnInitialized()
@@ -46,7 +47,7 @@
             MessageScreen.ShowMessage(notificationService, "Contato", "Contato salvo com sucesso!", NotificationSeverity.Success);
             DialogService.Close(true);
         }
-        
+
         else
         {
             MessageScreen.ShowMessage(notificationService, "Contato", "Erro ao salvar contato!", NotificationSeverity.Error);
@@ -54,5 +55,13 @@
 
         IsLoading = false;
         StateHasChanged();
+    }
+
+    private async void OnPhoneChange()
+    {
+        var phoneDDD = Contact.Phone.Substring(1, 2);
+
+        //implementar
+        // Contact.State = await StateWebService.GetStateByDDD(phoneDDD);
     }
 }

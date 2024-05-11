@@ -25,15 +25,47 @@
                         LoadData="LoadData" IsLoading=IsLoading PageSize="4" AllowPaging=true 
                         PagerAlwaysVisible=true Count="Count">
             <Columns>
-                <RadzenDataGridColumn TItem="ContactDto" Property="Name" Title="Nome" />
-                <RadzenDataGridColumn TItem="ContactDto" Property="Email" Title="E-mail" />
-                <RadzenDataGridColumn TItem="ContactDto" Property="Phone" Title="Número de Celular" />
-                <RadzenDataGridColumn TItem="ContactDto" Property="State" Title="Estado" />
+                <RadzenDataGridColumn TItem="ContactDto" Property="Name" Title="Nome">
+                    <Template Context="data">
+                        <RadzenText Text="@data.Name" />
+                    </Template>
+
+                    <EditTemplate Context="data">
+                        <RadzenTextBox @bind-Value="@data.Name" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+
+                <RadzenDataGridColumn TItem="ContactDto" Property="Email" Title="E-mail">
+                    <Template Context="data">
+                        <RadzenText Text="@data.Email" />
+                    </Template>
+                    <EditTemplate Context="data">
+                        <RadzenTextBox @bind-Value="@data.Email" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+
+                <RadzenDataGridColumn TItem="ContactDto" Property="Phone" Title="Número de Celular">
+                    <Template Context="data">
+                        <span>@AddPhoneMask(data.Phone)</span>
+                    </Template>
+
+                    <EditTemplate Context="data">
+                        <RadzenMask Mask="(**) *****-****" CharacterPattern="[0-9]" @bind-Value="@data.Phone" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+
+                <RadzenDataGridColumn TItem="ContactDto" Property="State.Name" Title="Estado" />
+
                 <RadzenDataGridColumn TItem="ContactDto" Title="Ações" Sortable=false Filterable=false Width="120px" TextAlign="TextAlign.Center">
                     <Template Context="data">
-                        <RadzenButton Icon="edit" />
-                        <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger" />
+                        <RadzenButton Icon="edit" Click="_ => grid.EditRow(data)"/>
+                        <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="_ => OpenDeleteModal(data)" />
                     </Template>
+
+                    <EditTemplate Context="data">
+                        <RadzenButton Icon="save" Click="_ => UpdateContact(data)"/>
+                        <RadzenButton Icon="cancel" ButtonStyle="ButtonStyle.Danger" Click="_ => grid.CancelEditRow(data)"/>
+                    </EditTemplate>
                 </RadzenDataGridColumn>
             </Columns>
         </RadzenDataGrid>
@@ -54,18 +86,18 @@
         await Task.Delay(1000);
         Contacts = new List<ContactDto>()
         {
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = "Parana" },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = "São Paulo" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = "Minas Gerais" },
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = new() {Name= "Parana" } },
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", State = new() {Name= "São Paulo" }},
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "1191234567", State = new() {Name= "Rio de Janeiro" }},
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = new() {Name= "Minas Gerais" }},
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "3198765431", State = new() {Name= "Parana" }},
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", State = new() {Name= "São Paulo" }},
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = new() {Name= "Rio de Janeiro" }},
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = new() {Name= "Minas Gerais" }},
+            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", State = new() {Name= "Parana" }},
+            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", State = new() {Name= "São Paulo" }},
+            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", State = new() {Name= "Rio de Janeiro" }},
+            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", State = new() {Name= "Minas Gerais" }},
 
         };
         Count = Contacts.Count();
@@ -82,6 +114,64 @@
     private async Task AddNewContact()
     {
         await DialogService.OpenAsync<ModalNewContact>("Adicionar Contato", null);
-        
+    }
+
+    private string AddPhoneMask(string phone)
+    {
+        if(phone.Length == 11)
+            return $"({phone.Substring(0, 2)}) {phone.Substring(3, 5)}-{phone.Substring(7)}";
+
+
+        return $"({phone.Substring(0, 2)}) {phone.Substring(3, 4)}-{phone.Substring(6)}";
+    }
+
+    private async Task OpenDeleteModal(ContactDto contact)
+    {
+        var result = await DialogService.Confirm("Excluir Contato", $"Deseja realmente excluir o contato {contact.Name}?", new ConfirmOptions() { OkButtonText = "Sim", CancelButtonText = "Não" });
+
+        if(result == true)
+        {
+            IsLoading = true;
+            StateHasChanged();
+            try
+            {
+                await ContactWebService.Delete(contact.Id);
+                MessageScreen.ShowMessage(notificationService, "Contato", "Contato excluído com sucesso!", NotificationSeverity.Success);
+            }
+            catch (Exception e)
+            {
+                MessageScreen.ShowMessage(notificationService, "Contato", "Erro ao excluir contato", NotificationSeverity.Error);
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                IsLoading = true;
+                await grid.Reload();
+                StateHasChanged();
+            }
+        }
+    }
+
+    private async Task UpdateContact(ContactDto contact)
+    {
+        IsLoading = true;
+        StateHasChanged();
+
+        try
+        {
+            await ContactWebService.Update(contact);
+            MessageScreen.ShowMessage(notificationService, "Contato", "Contato atualizado com sucesso!", NotificationSeverity.Success);
+        }
+        catch (Exception e)
+        {
+            MessageScreen.ShowMessage(notificationService, "Contato", "Erro ao atualizar contato", NotificationSeverity.Error);
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            IsLoading = true;
+            await grid.Reload();
+            StateHasChanged();
+        }
     }
 }
