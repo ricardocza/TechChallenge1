@@ -60,10 +60,5 @@ namespace TechChallenge1.Data.Context
             );
         }
 
-        override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-FL5KNSI;Database=tech_challenge_01;User Id=sa;Password=Abc@1234;Trusted_Connection=True;TrustServerCertificate=True");
-        }
-
     }
 }

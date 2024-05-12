@@ -14,7 +14,7 @@ namespace TechChallenge1.Domain.Models
         public string Name { get; set; }
 
         // EF Relations
-        //public IEnumerable<Contact> Contacts { get; set; }
+        public IEnumerable<Contact> Contacts { get; set; }
 
     }
 }

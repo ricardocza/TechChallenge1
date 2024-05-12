@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TechChallenge1.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,33 +59,33 @@ namespace TechChallenge1.Data.Migrations
                 columns: new[] { "Id", "DDD", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("07a0c26f-80c2-4caa-aa11-fbc23720f911"), 11, "11 - São Paulo" },
-                    { new Guid("1064a30a-4230-40d4-8e7e-b6552214fd4a"), 67, "67 - Campo Grande" },
-                    { new Guid("117d05e9-48b2-41d9-bb86-cf030954133e"), 21, "21 - Rio de Janeiro" },
-                    { new Guid("16f8b52d-0858-4398-ba13-482191adc44e"), 91, "91 - Belém" },
-                    { new Guid("26b8789d-85f7-4fd8-ab8d-99a77f7dc2de"), 81, "81 - Recife" },
-                    { new Guid("37ecae54-d0ac-41b2-9c8a-219c3d10583a"), 84, "84 - Natal" },
-                    { new Guid("3f900447-a62f-4698-be0a-283ea7571b4f"), 63, "63 - Palmas" },
-                    { new Guid("453ce548-b73e-48a2-9413-8d0df2bec509"), 95, "95 - Boa Vista" },
-                    { new Guid("46c18361-0a5b-45cf-ade7-c4d8611a0300"), 79, "79 - Aracaju" },
-                    { new Guid("499d33d6-aae4-42ca-b876-c5fdaa52aa28"), 82, "82 - Maceió" },
-                    { new Guid("543d43c4-315f-4117-a2b3-e202509e1c69"), 85, "85 - Fortaleza" },
-                    { new Guid("5c12ed7f-2eae-45cc-9111-5a4d246a0a39"), 96, "96 - Macapá" },
-                    { new Guid("602ef38a-3a3f-4765-8d01-42ac8a15f319"), 65, "65 - Cuiabá" },
-                    { new Guid("623ab703-b5f1-4208-a4aa-82de97eb696b"), 98, "98 - São Luís" },
-                    { new Guid("7de5130e-1112-467d-a010-f9a9b04ba8ab"), 61, "61 - Brasília" },
-                    { new Guid("9350fcf1-8d37-4af8-a1bb-34b2482059c4"), 92, "92 - Manaus" },
-                    { new Guid("9976f5a2-8d88-4b2e-b7b0-ae6a531e35a4"), 71, "71 - Salvador" },
-                    { new Guid("a12e88a2-5d60-4646-9373-0eda16ade298"), 86, "86 - Teresina" },
-                    { new Guid("a3b9a17f-0900-4796-9122-2c6722845a6a"), 51, "51 - Porto Alegre" },
-                    { new Guid("a97521e0-69ed-4471-b55a-7605235488db"), 48, "48 - Florianópolis" },
-                    { new Guid("b2eb2523-b7c5-484f-8979-7b59035f0946"), 41, "41 - Curitiba" },
-                    { new Guid("c076a959-b0fc-488b-871c-e6d60964ad8d"), 68, "68 - Rio Branco" },
-                    { new Guid("c20f03ac-13d1-4ac5-b31a-710c11133bc8"), 31, "31 - Belo Horizonte" },
-                    { new Guid("d5541227-d002-47a1-81f4-2577ba036c56"), 83, "83 - João Pessoa" },
-                    { new Guid("da824844-3651-4a4f-976b-d568e534783e"), 69, "69 - Porto Velho" },
-                    { new Guid("df062898-4164-41bf-83f2-7522a4aff655"), 22, "27 - Vitória" },
-                    { new Guid("ffe7cddc-b27f-4908-87cd-4ff6ec0bfc10"), 62, "62 - Goiânia" }
+                    { new Guid("057e3f0a-8ee2-4bbf-afd7-aabdd9c89291"), 11, "São Paulo" },
+                    { new Guid("0e713c33-8d65-424d-90c7-bef3eac6e180"), 95, "Boa Vista" },
+                    { new Guid("151e4972-eebb-4d42-af90-e43b892b3398"), 61, "Brasília" },
+                    { new Guid("16f0cfe1-989c-4643-a750-0639f00641f7"), 41, "Curitiba" },
+                    { new Guid("18cec7ef-481e-4b5b-bb82-b1a68576c7ec"), 91, "Belém" },
+                    { new Guid("1a7e0bac-647a-46c5-99ed-6da690cc6343"), 65, "Cuiabá" },
+                    { new Guid("35f8abcb-4c52-400b-9659-3ddcbc960744"), 48, "Florianópolis" },
+                    { new Guid("391b8450-a646-403e-880b-cf19e5482768"), 68, "Rio Branco" },
+                    { new Guid("4510a7dd-b8a5-4f83-bf8c-511d98826f97"), 98, "São Luís" },
+                    { new Guid("6581ab83-fac6-4b69-91cb-daf4ee24da39"), 69, "Porto Velho" },
+                    { new Guid("6b7056a2-9e02-412f-b8c7-52b48484596a"), 84, "Natal" },
+                    { new Guid("7231c076-d737-404f-a17d-880210f33d67"), 71, "Salvador" },
+                    { new Guid("7584c8f3-5a1f-4a4d-bab0-f46422ad7c8d"), 92, "Manaus" },
+                    { new Guid("76c2b443-183e-47b7-9f5a-7b0abfb9c86b"), 63, "Palmas" },
+                    { new Guid("78b89ae2-0568-4cb4-8ec4-8765e11d5a63"), 96, "Macapá" },
+                    { new Guid("7e2e0415-fc56-4790-92b5-7106c584296e"), 79, "Aracaju" },
+                    { new Guid("8281c06a-386f-41e6-a3eb-4a47116ecd55"), 81, "Recife" },
+                    { new Guid("89f6cd24-86ee-4e8d-9822-5ea63cdd2db3"), 83, "João Pessoa" },
+                    { new Guid("8ae53368-db49-417c-8810-25e4de5291e4"), 82, "Maceió" },
+                    { new Guid("8e0af3e5-548e-475b-9a68-f4ae98b3e5a8"), 21, "Rio de Janeiro" },
+                    { new Guid("a1bbee87-6805-4ee2-a07b-4027d7353765"), 31, "Belo Horizonte" },
+                    { new Guid("a8302dea-becf-401f-8820-7ba4e4ed8638"), 62, "Goiânia" },
+                    { new Guid("ab5fbc48-e0d5-44eb-9189-47fe15f9f576"), 22, "Vitória" },
+                    { new Guid("cec1b553-fdcc-497e-aa9f-117f3598a55f"), 51, "Porto Alegre" },
+                    { new Guid("d834c85d-b467-4eb4-b2e8-59f3517a18df"), 86, "Teresina" },
+                    { new Guid("da0d0447-10e7-4905-a020-b61eb947fbc7"), 85, "Fortaleza" },
+                    { new Guid("fb8f29b9-a17e-46e1-9299-4b765a16d647"), 67, "Campo Grande" }
                 });
 
             migrationBuilder.CreateIndex(

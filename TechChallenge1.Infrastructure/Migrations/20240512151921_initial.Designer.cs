@@ -12,8 +12,8 @@ using TechChallenge1.Data.Context;
 namespace TechChallenge1.Data.Migrations
 {
     [DbContext(typeof(techchallengeDbContext))]
-    [Migration("20240512002502_remove_state_code_in_name")]
-    partial class remove_state_code_in_name
+    [Migration("20240512151921_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,163 +73,163 @@ namespace TechChallenge1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2a1fecbf-2878-49df-a61b-258227145cfa"),
+                            Id = new Guid("057e3f0a-8ee2-4bbf-afd7-aabdd9c89291"),
                             DDD = 11,
                             Name = "São Paulo"
                         },
                         new
                         {
-                            Id = new Guid("1bad00ac-11c9-4f2d-8c76-c528255f7cb1"),
+                            Id = new Guid("8e0af3e5-548e-475b-9a68-f4ae98b3e5a8"),
                             DDD = 21,
                             Name = "Rio de Janeiro"
                         },
                         new
                         {
-                            Id = new Guid("2c1cd8ab-4528-4575-90d7-2fb6af3c3e96"),
+                            Id = new Guid("ab5fbc48-e0d5-44eb-9189-47fe15f9f576"),
                             DDD = 22,
                             Name = "Vitória"
                         },
                         new
                         {
-                            Id = new Guid("d2a7cbc6-0f75-4519-b852-f4a6c84472e0"),
+                            Id = new Guid("a1bbee87-6805-4ee2-a07b-4027d7353765"),
                             DDD = 31,
                             Name = "Belo Horizonte"
                         },
                         new
                         {
-                            Id = new Guid("a3eee062-09fa-410b-b3e7-716710394894"),
+                            Id = new Guid("16f0cfe1-989c-4643-a750-0639f00641f7"),
                             DDD = 41,
                             Name = "Curitiba"
                         },
                         new
                         {
-                            Id = new Guid("b68927a8-3866-4559-9b02-91720faca06a"),
+                            Id = new Guid("35f8abcb-4c52-400b-9659-3ddcbc960744"),
                             DDD = 48,
                             Name = "Florianópolis"
                         },
                         new
                         {
-                            Id = new Guid("1f117634-5a80-4c0e-9ac6-52c0d8ad723a"),
+                            Id = new Guid("cec1b553-fdcc-497e-aa9f-117f3598a55f"),
                             DDD = 51,
                             Name = "Porto Alegre"
                         },
                         new
                         {
-                            Id = new Guid("2fea6eec-a7c6-42f3-beab-841768d28321"),
+                            Id = new Guid("151e4972-eebb-4d42-af90-e43b892b3398"),
                             DDD = 61,
                             Name = "Brasília"
                         },
                         new
                         {
-                            Id = new Guid("e28d40ef-cc88-4742-bf07-1174bb4d37cd"),
+                            Id = new Guid("a8302dea-becf-401f-8820-7ba4e4ed8638"),
                             DDD = 62,
                             Name = "Goiânia"
                         },
                         new
                         {
-                            Id = new Guid("e747a2e5-4f2e-4790-afe3-7d47d073469a"),
+                            Id = new Guid("76c2b443-183e-47b7-9f5a-7b0abfb9c86b"),
                             DDD = 63,
                             Name = "Palmas"
                         },
                         new
                         {
-                            Id = new Guid("aff4abc7-8083-475a-b08a-536afb72aa2e"),
+                            Id = new Guid("1a7e0bac-647a-46c5-99ed-6da690cc6343"),
                             DDD = 65,
                             Name = "Cuiabá"
                         },
                         new
                         {
-                            Id = new Guid("38fd25bc-22ac-4f8b-ab19-a3c04550141c"),
+                            Id = new Guid("fb8f29b9-a17e-46e1-9299-4b765a16d647"),
                             DDD = 67,
                             Name = "Campo Grande"
                         },
                         new
                         {
-                            Id = new Guid("730ab5cd-e083-4c75-bfc7-1f3d235d7333"),
+                            Id = new Guid("391b8450-a646-403e-880b-cf19e5482768"),
                             DDD = 68,
                             Name = "Rio Branco"
                         },
                         new
                         {
-                            Id = new Guid("593c81ff-7bb6-4ce7-aee5-d16e5e6fb169"),
+                            Id = new Guid("6581ab83-fac6-4b69-91cb-daf4ee24da39"),
                             DDD = 69,
                             Name = "Porto Velho"
                         },
                         new
                         {
-                            Id = new Guid("6f67473f-bab4-4c53-b02c-a9698b512ce4"),
+                            Id = new Guid("7231c076-d737-404f-a17d-880210f33d67"),
                             DDD = 71,
                             Name = "Salvador"
                         },
                         new
                         {
-                            Id = new Guid("98d4fa8d-83fc-498a-9f10-4dbb0338cd0b"),
+                            Id = new Guid("7e2e0415-fc56-4790-92b5-7106c584296e"),
                             DDD = 79,
                             Name = "Aracaju"
                         },
                         new
                         {
-                            Id = new Guid("79934626-7e38-491d-bef6-0fd6193fc54c"),
+                            Id = new Guid("8281c06a-386f-41e6-a3eb-4a47116ecd55"),
                             DDD = 81,
                             Name = "Recife"
                         },
                         new
                         {
-                            Id = new Guid("f5b87d2b-8cdd-4394-bb3b-d9334f89ce30"),
+                            Id = new Guid("8ae53368-db49-417c-8810-25e4de5291e4"),
                             DDD = 82,
                             Name = "Maceió"
                         },
                         new
                         {
-                            Id = new Guid("d73142bd-d616-4e22-9877-441f2be4309a"),
+                            Id = new Guid("89f6cd24-86ee-4e8d-9822-5ea63cdd2db3"),
                             DDD = 83,
                             Name = "João Pessoa"
                         },
                         new
                         {
-                            Id = new Guid("c145e976-b48a-4e83-b590-f574a57827f6"),
+                            Id = new Guid("6b7056a2-9e02-412f-b8c7-52b48484596a"),
                             DDD = 84,
                             Name = "Natal"
                         },
                         new
                         {
-                            Id = new Guid("c738d766-807a-4bd6-8a25-4d7d47367a42"),
+                            Id = new Guid("da0d0447-10e7-4905-a020-b61eb947fbc7"),
                             DDD = 85,
                             Name = "Fortaleza"
                         },
                         new
                         {
-                            Id = new Guid("5e042064-b48f-4cbf-a308-9ca9a6c0122b"),
+                            Id = new Guid("d834c85d-b467-4eb4-b2e8-59f3517a18df"),
                             DDD = 86,
                             Name = "Teresina"
                         },
                         new
                         {
-                            Id = new Guid("ec6f3cb1-2260-4df4-b44e-694db64abb9b"),
+                            Id = new Guid("18cec7ef-481e-4b5b-bb82-b1a68576c7ec"),
                             DDD = 91,
                             Name = "Belém"
                         },
                         new
                         {
-                            Id = new Guid("6003f96e-2901-473f-b2a7-d4a6fc2dea6d"),
+                            Id = new Guid("7584c8f3-5a1f-4a4d-bab0-f46422ad7c8d"),
                             DDD = 92,
                             Name = "Manaus"
                         },
                         new
                         {
-                            Id = new Guid("6d6ae363-d0ec-42ee-a680-1eccf0611bc9"),
+                            Id = new Guid("0e713c33-8d65-424d-90c7-bef3eac6e180"),
                             DDD = 95,
                             Name = "Boa Vista"
                         },
                         new
                         {
-                            Id = new Guid("e63491ad-486a-4d30-a69a-9de2ef9e7526"),
+                            Id = new Guid("78b89ae2-0568-4cb4-8ec4-8765e11d5a63"),
                             DDD = 96,
                             Name = "Macapá"
                         },
                         new
                         {
-                            Id = new Guid("bfc977c9-b92a-4d7f-a935-7afc077998de"),
+                            Id = new Guid("4510a7dd-b8a5-4f83-bf8c-511d98826f97"),
                             DDD = 98,
                             Name = "São Luís"
                         });
