@@ -12,6 +12,8 @@ namespace TechChallenge1.API.Configurations
         {
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<IStateRepository, StateRepository>();
+            services.AddScoped<IStateService, StateService>();
 
             return services;
         }

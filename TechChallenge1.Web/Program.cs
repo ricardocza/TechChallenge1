@@ -12,7 +12,9 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddRadzenComponents();
 
 builder.Services.AddScoped<IContactWebService, ContactWebService>();
+builder.Services.AddScoped<IStateWebService, StateWebService>();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+var defaultApiUrl = builder.Configuration.GetValue<string>("ApiUrl");
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(defaultApiUrl) });
 
 await builder.Build().RunAsync();

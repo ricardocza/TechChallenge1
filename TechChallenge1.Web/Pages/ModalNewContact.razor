@@ -4,6 +4,7 @@
 
 @inject DialogService DialogService
 @inject IContactWebService ContactWebService
+@inject IStateWebService StateWebService
 @inject NotificationService notificationService
 
 <div>
@@ -66,9 +67,14 @@
 
     private async void OnPhoneChange()
     {
-        var phoneDDD = Contact.Phone.Substring(1, 2);
+        var phoneDDD = int.TryParse(Contact.Phone.Substring(1, 2), out int ddd);
 
-        //implementar
-        // Contact.State = await StateWebService.GetStateByDDD(phoneDDD);
+        var response = await StateWebService.GetStateByDDD(ddd);
+
+        if (response != null)
+        {
+            Contact.StateName = response.Name;
+            StateHasChanged();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace TechChallenge1.Core.DTO
         public string Name { get; set; }
 
         [Required(ErrorMessage = "O telefone é obrigatório")]
-        [StringLength(11, MinimumLength = 10,  ErrorMessage = "O telefone deve ter entre 10 e 11 números")]
+        [StringLength(15, MinimumLength = 14,  ErrorMessage = "O telefone deve ter entre 10 e 11 números")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "O email é obrigatório")]
