@@ -24,14 +24,9 @@ namespace TechChallenge1.Domain.Services
             await _contactRepository.Create(contact);
         }
 
-        public Task Delete(Contact contact)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(Guid id)
-        {
-            throw new NotImplementedException();
+            await _contactRepository.Delete(id);
         }
 
         public async Task<IEnumerable<Contact>> GetAll()

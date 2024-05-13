@@ -30,5 +30,12 @@ namespace TechChallenge1.Data.Repository
         {
             return await Db.Contacts.AsNoTracking().Include(d => d.State).OrderBy(c => c.Name).ToListAsync();  
         }
+
+
+        public virtual async Task<Contact> GetById(Guid id)
+        {
+            return await Db.Contacts.AsNoTracking().Include(d => d.State).FirstOrDefaultAsync(c => c.Id == id);
+        }
+
     }
 }

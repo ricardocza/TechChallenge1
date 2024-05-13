@@ -14,18 +14,15 @@ namespace TechChallenge1.API.Controllers
     {
         private readonly IContactService _contactService;
         private readonly IStateService _stateService;
-
         
         private readonly IMapper _mapper;
 
-      
         public ContactController(IContactService contactService, IMapper mapper, IStateService stateService)
         {
             _mapper = mapper;
             _contactService = contactService;
             _stateService = stateService;
         }
-
 
         [HttpGet]
         [AllowAnonymous]
@@ -42,20 +39,6 @@ namespace TechChallenge1.API.Controllers
             }
            
         }
-
-        [HttpGet]
-        [Route("detail-contact/{id:guid}")]
-        public async Task<IActionResult> DetailContact([FromRoute] Guid id)
-        {
-            var contact = _mapper.Map<ContactDto>(await _contactService.GetById(id));
-
-            if (contact is null)
-            {
-                return NotFound();
-            }
-            return Ok(contact);
-        }
-
 
         [Route("register-contact")]
         [HttpPost]
