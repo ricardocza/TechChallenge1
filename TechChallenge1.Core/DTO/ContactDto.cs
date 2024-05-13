@@ -21,8 +21,9 @@ namespace TechChallenge1.Core.DTO
         public string Email { get; set; }
 
         [Required(ErrorMessage = "O estado é obrigatório")]
-        public string StateName { get; set; } = "";
 
-        public int StateId { get; set; }
+        public Guid StateId { get; set; }
+
+        public StateDto State { get; set; }
     }
 }

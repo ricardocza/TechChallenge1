@@ -18,9 +18,9 @@ namespace TechChallenge1.Domain.Services
             _contactRepository = contactRepository;
         }
 
-        public Task Create(Contact contact)
+        public async Task Create(Contact contact)
         {
-            throw new NotImplementedException();
+            await _contactRepository.Create(contact);
         }
 
         public Task Delete(Contact contact)

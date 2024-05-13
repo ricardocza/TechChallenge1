@@ -13,13 +13,17 @@ namespace TechChallenge1.API.Controllers
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
+        private readonly IStateService _stateService;
+
+        
         private readonly IMapper _mapper;
 
       
-        public ContactController(IContactService contactService, IMapper mapper)
+        public ContactController(IContactService contactService, IMapper mapper, IStateService stateService)
         {
             _mapper = mapper;
             _contactService = contactService;
+            _stateService = stateService;
         }
 
 
@@ -61,6 +65,7 @@ namespace TechChallenge1.API.Controllers
             //TODO: fluent validion
             try
             {
+                contactRequest = await FillState(contactRequest);
                 await _contactService.Create(_mapper.Map<Contact>(contactRequest));
 
                 return Ok(contactRequest);
@@ -110,6 +115,14 @@ namespace TechChallenge1.API.Controllers
             }
 
             return Ok(contactUpdateRequest);
+        }
+
+
+        private async Task<ContactDto> FillState(ContactDto contact)
+        {
+            contact.State =  _mapper.Map<StateDto>(await _stateService.GetById(contact.StateId));
+
+            return contact;
         }
     }
 }
