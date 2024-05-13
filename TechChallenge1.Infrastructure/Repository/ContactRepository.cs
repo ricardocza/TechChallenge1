@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechChallenge1.Core.Models;
 using TechChallenge1.Data.Context;
 using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Models;
@@ -23,6 +24,11 @@ namespace TechChallenge1.Data.Repository
             //TODO
             //
             return new List<Contact>();
+        }
+
+        public  async Task<IEnumerable<Contact>> GetAll()
+        {
+            return await Db.Contacts.AsNoTracking().Include(d => d.State).OrderBy(c => c.Name).ToListAsync();  
         }
     }
 }

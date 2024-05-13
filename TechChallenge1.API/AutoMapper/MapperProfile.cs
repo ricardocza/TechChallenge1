@@ -9,6 +9,7 @@ namespace TechChallenge1.API.AutoMapper
         public MapperProfile()
         {
             CreateMap<Contact, ContactDto>().ReverseMap();
+                
             CreateMap<State, StateDto>().ReverseMap();
         }
     }

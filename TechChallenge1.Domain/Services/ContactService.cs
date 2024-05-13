@@ -20,6 +20,7 @@ namespace TechChallenge1.Domain.Services
 
         public async Task Create(Contact contact)
         {
+            contact.State = null;
             await _contactRepository.Create(contact);
         }
 

@@ -19,6 +19,7 @@ namespace TechChallenge1.Infrastructure.Repository
         }
         public virtual async Task Create(TEntity entity)
         {
+            
             DbSet.Add(entity);
             await SaveChanges();
         }
