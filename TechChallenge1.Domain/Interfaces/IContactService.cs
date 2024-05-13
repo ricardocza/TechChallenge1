@@ -15,6 +15,6 @@ namespace TechChallenge1.Domain.Interfaces
 
         Task<Contact> GetById (Guid id);
         Task<IEnumerable<Contact>> GetAll ();
-        Task<IEnumerable<Contact>> GetByState (int id);
+      
     }
 }

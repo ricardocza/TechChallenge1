@@ -33,19 +33,14 @@ namespace TechChallenge1.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Contact>> GetAll()
+        public async Task<IEnumerable<Contact>> GetAll()
         {
-            throw new NotImplementedException();
+          return  await _contactRepository.GetAll();
         }
 
-        public Task<Contact> GetById(Guid id)
+        public async Task<Contact> GetById(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Contact>> GetByState(int id)
-        {
-            throw new NotImplementedException();
+            return await _contactRepository.GetById(id);
         }
 
         public Task Update(Guid id, Contact contact)

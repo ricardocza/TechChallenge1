@@ -20,8 +20,6 @@ namespace TechChallenge1.Core.DTO
         [EmailAddress(ErrorMessage = "O email é inválido")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "O estado é obrigatório")]
-
         public Guid StateId { get; set; }
 
         public StateDto State { get; set; }
