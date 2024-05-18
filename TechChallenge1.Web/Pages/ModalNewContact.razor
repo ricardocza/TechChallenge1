@@ -20,8 +20,8 @@
             <RadzenMask Mask="(**) *****-****" CharacterPattern="[0-9]" Placeholder="(00) 00000-0000" @bind-Value="@Contact.Phone" Change="OnPhoneChange" />
             <ValidationMessage For="() => Contact.Phone" />
 
-            <RadzenTextBox @bind-Value="@Contact.StateName" Placeholder="Estado" Disabled=true />
-            <ValidationMessage For="() => Contact.StateName" />
+            <RadzenTextBox @bind-Value="@Contact.State.Name" Placeholder="Estado" Disabled=true />
+            <ValidationMessage For="() => Contact.StateId" />
 
             <RadzenRow JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Center" Gap="16">
                 <RadzenButton ButtonType="ButtonType.Submit" Text="Salvar" Disabled="IsLoading" />
@@ -40,6 +40,8 @@
     protected override void OnInitialized()
     {
         _editContext = new EditContext(Contact);
+
+        Contact.State = new();
     }
 
 
@@ -73,8 +75,15 @@
 
         if (response != null)
         {
-            Contact.StateName = response.Name;
+            Contact.StateId = response.Id;
+            Contact.State.Name = response.Name;
             StateHasChanged();
+        }
+
+        else
+        {
+            MessageScreen.ShowMessage(notificationService, "Erro", "Não existe estado com esse código de telefone", NotificationSeverity.Error);
+
         }
     }
 }

@@ -17,23 +17,31 @@ namespace TechChallenge1.Web.WebServices
 
         public async Task<ContactDto?> AddContact(ContactDto contact)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/contacts", contact);
+            var response = await _httpClient.PostAsJsonAsync("api/contact/register-contact", contact);
 
             if( response.IsSuccessStatusCode )
             {
-                var content = await response.Content.ReadFromJsonAsync<ReturnApiDto<ContactDto>>();
-                return content.Data;
+                var content = await response.Content.ReadFromJsonAsync<ContactDto>();
+                
+                return content;
             }
+            
+            var message = response.Content.ReadAsStringAsync();
 
             return null;
         }
 
         public async Task<bool> Delete(Guid id)
         {
-            var response = await _httpClient.DeleteAsync($"api/contacts/{id}");
+            var response = await _httpClient.DeleteAsync($"api/contact/delete-contact/{id}");
 
             if( response.IsSuccessStatusCode )
             {
+                if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return false;
+                }
+
                 return true;
             }
 
@@ -42,7 +50,7 @@ namespace TechChallenge1.Web.WebServices
 
         public async Task<IEnumerable<ContactDto>> GetAll()
         {
-            var response = await _httpClient.GetAsync("api/contacts");
+            var response = await _httpClient.GetAsync("api/contact/");
 
             if( response.IsSuccessStatusCode )
             {
@@ -61,7 +69,7 @@ namespace TechChallenge1.Web.WebServices
 
         public async Task<ContactDto?> GetById(Guid id)
         {
-            var response = await _httpClient.GetAsync($"api/contacts/{id}");
+            var response = await _httpClient.GetAsync($"api/contact/{id}");
 
             if( response.IsSuccessStatusCode )
             {
@@ -80,7 +88,7 @@ namespace TechChallenge1.Web.WebServices
 
         public async Task<ReturnTableDto<ContactDto>> GetRadzenList(LoadDataArgs args)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/contacts/GetRadzenList", args);
+            var response = await _httpClient.PostAsJsonAsync("api/contact/radzen-list", args);
 
             if( response.IsSuccessStatusCode )
             {
@@ -89,8 +97,8 @@ namespace TechChallenge1.Web.WebServices
                     return new ReturnTableDto<ContactDto>();
                 }
 
-                var content = await response.Content.ReadFromJsonAsync<ReturnApiDto<ReturnTableDto<ContactDto>>>();
-                return content.Data;
+                var content = await response.Content.ReadFromJsonAsync<ReturnTableDto<ContactDto>>();
+                return content;
             }
 
             var message = response.Content.ReadAsStringAsync();
@@ -99,7 +107,7 @@ namespace TechChallenge1.Web.WebServices
 
         public async Task<ContactDto?> Update(ContactDto contact)
         {
-            var response = await _httpClient.PatchAsJsonAsync("api/contacts", contact);
+            var response = await _httpClient.PatchAsJsonAsync("api/contact/update-contact", contact);
 
             if( response.IsSuccessStatusCode )
             {

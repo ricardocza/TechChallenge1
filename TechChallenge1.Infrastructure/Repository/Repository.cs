@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using TechChallenge1.Core.DTO;
 using TechChallenge1.Core.Models;
 using TechChallenge1.Data.Context;
 using TechChallenge1.Domain.Interfaces;
@@ -19,7 +22,6 @@ namespace TechChallenge1.Infrastructure.Repository
         }
         public virtual async Task Create(TEntity entity)
         {
-            
             DbSet.Add(entity);
             await SaveChanges();
         }
@@ -40,12 +42,36 @@ namespace TechChallenge1.Infrastructure.Repository
             return await DbSet.ToListAsync();
         }
 
+        public ReturnTableDto<TType> GetRadzenList<TType>(string filter, string order, int? skip, int? take, Expression<Func<TEntity, TType>> select) where TType : class
+        {
+            var response = new ReturnTableDto<TType>();
+            var query = from obj in DbSet select obj;
+
+            response.TotalRegister = query.Count();
+
+            if (!string.IsNullOrEmpty(filter))
+                query = query.Where(filter);
+
+            if (!string.IsNullOrEmpty(order))
+                query = query.OrderBy(order);
+
+            if (skip.HasValue)
+                query = query.Skip(skip.Value);
+
+            if (take.HasValue)
+                query = query.Take(take.Value);
+            response.List = query.AsNoTracking().Select(select).ToList();
+            response.TotalRegisterFilter = query.Count();
+
+            return response;
+        }
+
         public virtual async Task<TEntity> GetById(Guid id)
         {
             return await DbSet.FindAsync(id);
         }
 
-        public virtual async  Task Update(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
             DbSet.Update(entity);
             await SaveChanges();

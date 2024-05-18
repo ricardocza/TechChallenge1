@@ -83,29 +83,9 @@
         IsLoading = true;
         StateHasChanged();
 
-        await Task.Delay(1000);
-        Contacts = new List<ContactDto>()
-        {
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", StateName = "Parana" } ,
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", StateName = "São Paulo" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "1191234567", StateName = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", StateName = "Minas Gerais" },
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "3198765431", StateName = "Parana" },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "4198765413", StateName = "São Paulo" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", StateName = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", StateName = "Minas Gerais" },
-            new() { Name = "John Doe", Email = "jophn@mail.com", Phone = "31987654321", StateName = "Parana" },
-            new() { Name = "Jane Doe", Email = "jane@mail.com", Phone = "41987654132", StateName = "São Paulo" },
-            new() { Name = "June Doe", Email = "jine@mail.com", Phone = "11912345678", StateName = "Rio de Janeiro" },
-            new() { Name = "Jan Doe", Email = "june@mail.com", Phone = "21999999999", StateName = "Minas Gerais" },
-
-        };
-        Count = Contacts.Count();
-
-        // Remover dados mocados e manter as próximas linhas
-        // var result = await ContactWebService.GetRadzenList(args);
-        // Count = result.TotalRegisterFilter;
-        // Contacts = result.List;
+        var result = await ContactWebService.GetRadzenList(args);
+        Count = result.TotalRegister;
+        Contacts = result.List;
 
         IsLoading = false;
         StateHasChanged();
@@ -114,6 +94,7 @@
     private async Task AddNewContact()
     {
         await DialogService.OpenAsync<ModalNewContact>("Adicionar Contato", null);
+        await grid.Reload();
     }
 
     private string AddPhoneMask(string phone)
@@ -145,8 +126,8 @@
             }
             finally
             {
-                IsLoading = true;
                 await grid.Reload();
+                IsLoading = false;
                 StateHasChanged();
             }
         }

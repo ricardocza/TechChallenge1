@@ -38,13 +38,12 @@ public class StateWebService : IStateWebService
         {
             var response = await _httpClient.GetAsync($"api/state/{ddd}");
 
-            if (response.IsSuccessStatusCode)
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                {
-                    return null;
-                }
-
+                return null;
+            }
+            else if (response.IsSuccessStatusCode)
+            {
                 var content = await response.Content.ReadFromJsonAsync<StateDto>();
                 return content;
             }

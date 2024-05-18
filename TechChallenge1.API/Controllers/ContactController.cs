@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Radzen;
 using TechChallenge1.Core.DTO;
 using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Models;
@@ -32,6 +33,42 @@ namespace TechChallenge1.API.Controllers
             try
             {
                return Ok(_mapper.Map<IEnumerable<ContactDto>>(await _contactService.GetAll()));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+           
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("radzen-list")]
+        public IActionResult GetRadzenList(LoadDataArgs args)
+        {
+            try
+            {
+                var entity =  _contactService.GetRadzenList(args.Filter, args.OrderBy, args.Skip.Value, args.Top.Value, x => new Contact()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Email = x.Email,
+                    Phone = x.Phone,
+                    State = x.State,
+                    StateId = x.StateId
+                });
+
+                var dtoList = _mapper.Map<IEnumerable<ContactDto>>(entity.List);
+
+                var returnTable = new ReturnTableDto<ContactDto>
+                {
+                    TotalRegister = entity.TotalRegister,
+                    List = dtoList,
+                    TotalPages = entity.TotalPages,
+                    TotalRegisterFilter = entity.TotalRegisterFilter,
+                };
+
+               return Ok(returnTable);
             }
             catch (Exception)
             {
@@ -76,12 +113,12 @@ namespace TechChallenge1.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        [Route("update-contact/{id:guid}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] Guid id, [FromBody] ContactDto contactUpdateRequest)
+        [HttpPatch]
+        [Route("update-contact")]
+        public async Task<IActionResult> UpdateUser([FromBody] ContactDto dto)
         {
             //TODO: fluent validion
-            var contact = await _contactService.GetById(id);
+            var contact = await _contactService.GetById(dto.Id);
 
             if (contact is null)
             {
@@ -89,7 +126,8 @@ namespace TechChallenge1.API.Controllers
             }
             try
             {
-                await _contactService.Update(id,_mapper.Map<Contact>(contactUpdateRequest));
+                var entity = _mapper.Map<Contact>(dto);
+                await _contactService.Update(entity);
 
             }
             catch (Exception e)
@@ -97,7 +135,7 @@ namespace TechChallenge1.API.Controllers
                 return (BadRequest(new { Message = e.Message }));
             }
 
-            return Ok(contactUpdateRequest);
+            return Ok(dto);
         }
 
 

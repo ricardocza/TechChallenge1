@@ -18,21 +18,13 @@ namespace TechChallenge1.Data.Repository
         {
 
         }
-        public IEnumerable<Contact> GetByDDD(int id)
-        {
-
-            //TODO
-            //
-            return new List<Contact>();
-        }
-
+        
         public  async Task<IEnumerable<Contact>> GetAll()
         {
             return await Db.Contacts.AsNoTracking().Include(d => d.State).OrderBy(c => c.Name).ToListAsync();  
         }
 
-
-        public virtual async Task<Contact> GetById(Guid id)
+        public override async Task<Contact> GetById(Guid id)
         {
             return await Db.Contacts.AsNoTracking().Include(d => d.State).FirstOrDefaultAsync(c => c.Id == id);
         }

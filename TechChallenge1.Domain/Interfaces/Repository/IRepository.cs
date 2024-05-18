@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using TechChallenge1.Core.DTO;
 using TechChallenge1.Core.Models;
 
 namespace TechChallenge1.Domain.Interfaces
@@ -12,6 +13,7 @@ namespace TechChallenge1.Domain.Interfaces
         Task Delete(Guid id);
 
         Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        ReturnTableDto<TType> GetRadzenList<TType>(string filter, string order, int? skip, int? take, Expression<Func<TEntity, TType>> select) where TType : class;
 
         Task<int> SaveChanges();
     }
