@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechChallenge1.Core.DTO;
 using TechChallenge1.Domain.Interfaces;
+using TechChallenge1.Domain.Services;
 
 namespace TechChallenge1.API.Controllers
 {
@@ -20,16 +21,16 @@ namespace TechChallenge1.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllStates()
+        public async Task<IActionResult> GetAllStates()
         {
             try
             {
-                return Ok(_stateService.GetAll());
+                return Ok(_mapper.Map<IEnumerable<StateDto>>(await _stateService.GetAll()));
             }
             catch (Exception)
             {
                 throw;
-            }
+            }           
         }
 
         [HttpGet("{ddd:int}")]
@@ -48,9 +49,9 @@ namespace TechChallenge1.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult GetStateById(Guid id)
+        public async Task<IActionResult> GetStateById(Guid id)
         {
-            var state = _stateService.GetById(id);
+            var state = await _stateService.GetById(id);
 
             if (state is null)
             {
