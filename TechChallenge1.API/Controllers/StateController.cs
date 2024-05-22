@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechChallenge1.Core.DTO;
 using TechChallenge1.Domain.Interfaces;
-using TechChallenge1.Domain.Services;
 
 namespace TechChallenge1.API.Controllers
 {

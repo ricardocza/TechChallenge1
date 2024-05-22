@@ -1,6 +1,5 @@
 ﻿using Radzen;
 using System.Net.Http.Json;
-using System.Text.Json;
 using TechChallenge1.Core.DTO;
 using TechChallenge1.Web.WebServices.Interfaces;
 
