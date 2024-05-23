@@ -19,8 +19,22 @@ namespace TechChallenge1.Core.DTO
         [EmailAddress(ErrorMessage = "O email é inválido")]
         public string Email { get; set; }
 
+        [NotEmptyGuid]
         public Guid StateId { get; set; }
 
         public StateDto State { get; set; }
+    }
+
+    public class NotEmptyGuidAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null || value is not Guid guidValue || guidValue == Guid.Empty)
+            {
+                return new ValidationResult("O estado é obrigatório");
+            }
+
+            return ValidationResult.Success;
+        }
     }
 }

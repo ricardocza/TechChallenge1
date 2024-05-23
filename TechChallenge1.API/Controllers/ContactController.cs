@@ -83,14 +83,14 @@ namespace TechChallenge1.API.Controllers
 
         [Route("register-contact")]
         [HttpPost]
-        public async Task<IActionResult> AddContact([FromBody] ContactDto contactRequest)
+        public async Task<IActionResult> AddContact([FromBody] ContactDto contact)
         {
             try
             {
-                contactRequest = await FillState(contactRequest);
-                await _contactService.Create(_mapper.Map<Contact>(contactRequest));
+                contact = await FillState(contact);
+                await _contactService.Create(_mapper.Map<Contact>(contact));
 
-                return Ok(contactRequest);
+                return Ok(contact);
             }
             catch (DomainException e)
             {
@@ -127,6 +127,8 @@ namespace TechChallenge1.API.Controllers
             }
             try
             {
+                dto = await FillState(dto);
+
                 var entity = _mapper.Map<Contact>(dto);
                 await _contactService.Update(entity);
 
