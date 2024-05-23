@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Radzen;
+using TechChallenge1.Core.DomainExceptions;
 using TechChallenge1.Core.DTO;
+using TechChallenge1.Data.Repository;
 using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Models;
+using TechChallenge1.Domain.Validators;
 
 namespace TechChallenge1.API.Controllers
 {
@@ -81,8 +85,6 @@ namespace TechChallenge1.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddContact([FromBody] ContactDto contactRequest)
         {
-
-            //TODO: fluent validion
             try
             {
                 contactRequest = await FillState(contactRequest);
@@ -90,11 +92,10 @@ namespace TechChallenge1.API.Controllers
 
                 return Ok(contactRequest);
             }
-            catch (Exception e)
+            catch (DomainException e)
             {
                 return (BadRequest(new { Message = e.Message }));
             }
-
         }
 
         [HttpDelete]
