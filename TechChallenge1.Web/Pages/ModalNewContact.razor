@@ -10,6 +10,7 @@
 <div>
     <EditForm OnValidSubmit="Submit" EditContext="_editContext">
         <DataAnnotationsValidator />
+        
         <RadzenStack Gap="16">
             <RadzenTextBox @bind-Value="@Contact.Name" Placeholder="Nome" />
             <ValidationMessage For="() => Contact.Name" />
@@ -69,6 +70,9 @@
 
     private async void OnPhoneChange()
     {
+        IsLoading = true;
+        StateHasChanged();
+
         var phoneDDD = int.TryParse(Contact.Phone.Substring(1, 2), out int ddd);
 
         var response = await StateWebService.GetStateByDDD(ddd);
@@ -85,5 +89,8 @@
             MessageScreen.ShowMessage(notificationService, "Erro", "Não existe estado com esse código de telefone", NotificationSeverity.Error);
 
         }
+
+        IsLoading = false;
+        StateHasChanged();
     }
 }

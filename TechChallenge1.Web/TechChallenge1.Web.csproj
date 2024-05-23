@@ -16,8 +16,4 @@
     <ProjectReference Include="..\TechChallenge1.Core\TechChallenge1.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
-
 </Project>
