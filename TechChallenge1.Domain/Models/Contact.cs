@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechChallenge1.Core.Models;
+﻿using TechChallenge1.Core.Models;
 
 namespace TechChallenge1.Domain.Models
 {

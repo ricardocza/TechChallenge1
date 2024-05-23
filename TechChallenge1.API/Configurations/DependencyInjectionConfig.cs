@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using TechChallenge1.Data.Repository;
+﻿using TechChallenge1.Data.Repository;
 using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Services;
 

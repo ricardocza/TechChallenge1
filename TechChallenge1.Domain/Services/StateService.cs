@@ -12,9 +12,9 @@ public class StateService : IStateService
         _stateRepository = stateRepository;
     }
 
-    public Task<IEnumerable<State>> GetAll()
+    public async Task<IEnumerable<State>> GetAll()
     {
-        return _stateRepository.GetAll();
+        return await _stateRepository.GetAll();
     }
 
     public async Task<State> GetByDDD(int ddd)
@@ -22,8 +22,8 @@ public class StateService : IStateService
         return await _stateRepository.GetByDDD(ddd);
     }
 
-    public Task<State> GetById(Guid id)
+    public async Task<State> GetById(Guid id)
     {
-        return _stateRepository.GetById(id);
+        return await _stateRepository.GetById(id);
     }
 }

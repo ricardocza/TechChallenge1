@@ -3,9 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using TechChallenge1.API.AutoMapper;
 using TechChallenge1.API.Configurations;
-using TechChallenge1.Core.DTO;
 using TechChallenge1.Data.Context;
-using TechChallenge1.Domain.Models;
 
 var builder = WebApplication.CreateBuilder(args);
  

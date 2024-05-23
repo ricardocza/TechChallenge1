@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using TechChallenge1.Core.DomainExceptions;
 using TechChallenge1.Core.DTO;
-using TechChallenge1.Core.Models;
 using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Models;
 using TechChallenge1.Domain.Validators;
 
 namespace TechChallenge1.Domain.Services
 {
-    
+
     public class ContactService : IContactService
     {
         private readonly IContactRepository _contactRepository;

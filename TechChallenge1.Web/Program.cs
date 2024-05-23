@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Radzen;
-using Radzen.Blazor;
 using TechChallenge1.Web;
 using TechChallenge1.Web.WebServices;
 using TechChallenge1.Web.WebServices.Interfaces;
