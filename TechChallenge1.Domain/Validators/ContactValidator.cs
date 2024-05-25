@@ -1,10 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechChallenge1.Core.DTO;
 using TechChallenge1.Domain.Models;
 
 namespace TechChallenge1.Domain.Validators
@@ -18,16 +12,24 @@ namespace TechChallenge1.Domain.Validators
 
             RuleFor(c => c.Phone).NotEmpty().WithMessage("Campo de preenchimento obrigatório.")
                 .Must(IsOnlyNumberString).WithMessage("O telefone deve conter apenas números.")
-                .Length(10, 11);
+                .Length(10, 11).WithMessage("O telefone deve conter entre 10 e 11 digitos.");
 
             RuleFor(c => c.Name).NotEmpty().WithMessage("Campo de preenchimento obrigatório.")
                 .Length(4, 64).WithMessage("Campo com limite entre 4 e 64 caracteres.");
+
+            RuleFor(c => c.StateId).Must(BeAValidGuid).WithMessage("Campo de preenchimento obrigatório.")
+                .NotEmpty().WithMessage("Campo de preenchimento obrigatório.");
         }
 
         // Check if the string passed contains only numeric characters
         private bool IsOnlyNumberString(string numericString)
         {
             return long.TryParse(numericString, out _);
+        }
+
+        private bool BeAValidGuid(Guid id)
+        {
+            return id != Guid.Empty;
         }
     }
 }
