@@ -1,10 +1,6 @@
 using Moq;
-using System.Data.Common;
-using TechChallenge1.Core.DomainExceptions;
-using TechChallenge1.Domain.Interfaces;
 using TechChallenge1.Domain.Models;
 using TechChallenge1.Domain.Services;
-using TechChallenge1.Infrastructure.Repository;
 
 namespace TechChallenge.Domain.UnitTest
 {
@@ -19,13 +15,13 @@ namespace TechChallenge.Domain.UnitTest
         {
             //Arrange
             Guid guidStateId = stateId == string.Empty ? Guid.Empty : new Guid(stateId);
-            var contactWithNotValidEmail = new Contact() { Name = name, Phone = phone, Email = email, StateId = guidStateId };
+            var contactWithEmptyFields = new Contact() { Name = name, Phone = phone, Email = email, StateId = guidStateId };
             var mockRepository = new Mock<TechChallenge1.Domain.Interfaces.IContactRepository>();
 
             var contactService = new ContactService(mockRepository.Object);
 
             //Act
-            var result = contactService.Create(contactWithNotValidEmail);
+            var result = contactService.Create(contactWithEmptyFields);
 
             // Assert
             Assert.Equal("Campo de preenchimento obrigatório.", result.Exception.InnerException.Message.ToString());
